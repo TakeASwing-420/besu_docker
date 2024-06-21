@@ -1,0 +1,153 @@
+version: '3.7'
+
+services:
+  validator1:
+    image: hyperledger/besu:latest
+    container_name: validator1
+    volumes:
+      - ./validator1:/data
+    command: >
+      --genesis-file=/data/genesis.json
+      --data-path=/data
+      --node-private-key-file=/data/key
+      --rpc-http-enabled
+      --rpc-http-api=ETH,NET,WEB3,CLIQUE,QBFT
+      --host-whitelist="*"
+      --rpc-http-cors-origins="all"
+      --rpc-http-port=8545
+      --logging=INFO
+      --min-gas-price=0
+      --rpc-ws-enabled
+      --rpc-ws-host=0.0.0.0
+      --rpc-ws-port=8546
+      --p2p-port=30303
+      --bootnodes=enode://8bfa1ffcfe7be08235a4c0cffc2e5cf79a9f93dea2dd41e5e036e457fa7b72f58a83254cb3dd461396244c1f5e67b355e91245f3f3893e809211abd28a7ae3aa@127.0.0.1:30303,enode://fccaf825a511ada9365a1040e37c69a93b18b203ae6fd91f838d837f93dcb16fb56cb48427cfe08dbc19e8cd9ed80a6c1a99ede7316051b068a1215c7d905200@127.0.0.1:30304
+
+    ports:
+      - "8545:8545"
+      - "30303:30303"
+
+  validator2:
+    image: hyperledger/besu:latest
+    container_name: validator2
+    volumes:
+      - ./validator2:/data
+    command: >
+      --genesis-file=/data/genesis.json
+      --data-path=/data
+      --node-private-key-file=/data/key
+      --rpc-http-enabled
+      --rpc-http-api=ETH,NET,WEB3,CLIQUE,QBFT
+      --host-whitelist="*"
+      --rpc-http-cors-origins="all"
+      --rpc-http-port=8545
+      --logging=INFO
+      --min-gas-price=0
+      --rpc-ws-enabled
+      --rpc-ws-host=0.0.0.0
+      --rpc-ws-port=8547
+      --p2p-port=30303
+      --bootnodes=enode://8bfa1ffcfe7be08235a4c0cffc2e5cf79a9f93dea2dd41e5e036e457fa7b72f58a83254cb3dd461396244c1f5e67b355e91245f3f3893e809211abd28a7ae3aa@127.0.0.1:30303,enode://fccaf825a511ada9365a1040e37c69a93b18b203ae6fd91f838d837f93dcb16fb56cb48427cfe08dbc19e8cd9ed80a6c1a99ede7316051b068a1215c7d905200@127.0.0.1:30304
+    ports:
+      - "8546:8545"
+      - "30304:30303"
+
+  validator3:
+    image: hyperledger/besu:latest
+    container_name: validator3
+    volumes:
+      - ./validator3:/data
+    command: >
+      --genesis-file=/data/genesis.json
+      --data-path=/data
+      --node-private-key-file=/data/key
+      --rpc-http-enabled
+      --rpc-http-api=ETH,NET,WEB3,CLIQUE,QBFT
+      --host-whitelist="*"
+      --rpc-http-cors-origins="all"
+      --rpc-http-port=8545
+      --logging=INFO
+      --min-gas-price=0
+      --rpc-ws-enabled
+      --rpc-ws-host=0.0.0.0
+      --rpc-ws-port=8548
+      --p2p-port=30303
+      --bootnodes=enode://8bfa1ffcfe7be08235a4c0cffc2e5cf79a9f93dea2dd41e5e036e457fa7b72f58a83254cb3dd461396244c1f5e67b355e91245f3f3893e809211abd28a7ae3aa@127.0.0.1:30303,enode://fccaf825a511ada9365a1040e37c69a93b18b203ae6fd91f838d837f93dcb16fb56cb48427cfe08dbc19e8cd9ed80a6c1a99ede7316051b068a1215c7d905200@127.0.0.1:30304
+
+    ports:
+      - "8547:8545"
+      - "30305:30303"
+
+  validator4:
+    image: hyperledger/besu:latest
+    container_name: validator4
+    volumes:
+      - ./validator4:/data
+    command: >
+      --genesis-file=/data/genesis.json
+      --data-path=/data
+      --node-private-key-file=/data/key
+      --rpc-http-enabled
+      --rpc-http-api=ETH,NET,WEB3,CLIQUE,QBFT
+      --host-whitelist="*"
+      --rpc-http-cors-origins="all"
+      --rpc-http-port=8545
+      --logging=INFO
+      --min-gas-price=0
+      --rpc-ws-enabled
+      --rpc-ws-host=0.0.0.0
+      --rpc-ws-port=8549
+      --p2p-port=30303
+      --bootnodes=enode://8bfa1ffcfe7be08235a4c0cffc2e5cf79a9f93dea2dd41e5e036e457fa7b72f58a83254cb3dd461396244c1f5e67b355e91245f3f3893e809211abd28a7ae3aa@127.0.0.1:30303,enode://fccaf825a511ada9365a1040e37c69a93b18b203ae6fd91f838d837f93dcb16fb56cb48427cfe08dbc19e8cd9ed80a6c1a99ede7316051b068a1215c7d905200@127.0.0.1:30304
+
+    ports:
+      - "8548:8545"
+      - "30306:30303"
+
+  rpc:
+    image: hyperledger/besu:latest
+    container_name: rpc
+    volumes:
+      - ./rpc:/data
+    command: >
+      --genesis-file=/data/genesis.json
+      --data-path=/data
+      --rpc-http-enabled
+      --rpc-http-api=ETH,NET,WEB3,CLIQUE,QBFT
+      --host-whitelist="*"
+      --rpc-http-cors-origins="all"
+      --rpc-http-host=0.0.0.0
+      --bootnodes=enode://8bfa1ffcfe7be08235a4c0cffc2e5cf79a9f93dea2dd41e5e036e457fa7b72f58a83254cb3dd461396244c1f5e67b355e91245f3f3893e809211abd28a7ae3aa@127.0.0.1:30303,enode://fccaf825a511ada9365a1040e37c69a93b18b203ae6fd91f838d837f93dcb16fb56cb48427cfe08dbc19e8cd9ed80a6c1a99ede7316051b068a1215c7d905200@127.0.0.1:30304,enode://2225361c791c4ececc10cc1ada5a1d6863d9ccbe2335f0839be14847ca4a58572d9268d0e8f128e200e28a8bb7f07f5a2dd7ebd4c0607a9a2e1d86136e674269@127.0.0.1:30305,enode://94adbb923dbda81195d1c01cecd11abf2dc2fe9182aeb8409a66bebfb64d87bcb13eb9f1be97801abe02f9b0783f8f11a19d90755384558a1080cf099119b9e5@127.0.0.1:30306
+
+    ports:
+      - "8549:8545"
+      - "30307:30303"
+
+  blockscout:
+    image: blockscout/blockscout:latest
+    container_name: blockscout
+    environment:
+      DATABASE_URL: postgres://blockscout:blockscout@postgres:5432/blockscout
+      ETHEREUM_JSONRPC_VARIANT: "besu"
+      ETHEREUM_JSONRPC_HTTP_URL: "http://rpc:8545"
+      ETHEREUM_JSONRPC_WS_URL: "ws://rpc:8546"
+    depends_on:
+      - rpc
+      - postgres
+    ports:
+      - "4000:4000"
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: blockscout
+      POSTGRES_PASSWORD: blockscout
+      POSTGRES_DB: blockscout
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
