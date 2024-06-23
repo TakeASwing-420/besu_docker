@@ -1,10 +1,5 @@
 #!/bin/sh
 
 docker-compose up --build -d
-echo "------------------------------------------"
-echo "Press Ctrl + C to quit"
-echo "Showing logs of validator1"
-echo "------------------------------------------"
-cd ../blk-explorer-free/
-NODE_ENDPOINT=http://localhost:8545 docker-compose up -d
-docker-compose logs -f validator1
+cd blk-explorer-free/chainlens-free/docker-compose/
+NODE_ENDPOINT=http://172.16.239.1:8545 PORT=26000 docker-compose up -d
